@@ -4,11 +4,11 @@ import { addTodo } from '../actions'
 
 class App extends Component {
 	render = () => {
-		const { todos } = this.props
+		const { todos, onAdd } = this.props
 		return (
 			<div>
 				<input type="text" />
-				<button>add</button>
+				<button onClick={e => onAdd(e)} >add</button>
 				{ todos.map(todo => (<li>{todo}</li>)) }
 			</div>
 		)
@@ -21,7 +21,16 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAdd: (e) => {
+      dispatch(addTodo({todo: e.target.value}))
+    }
+  }
+}
+
 export default connect(
 	mapStateToProps,
+	mapDispatchToProps,
 )(App)
 
