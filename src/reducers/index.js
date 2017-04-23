@@ -6,7 +6,7 @@ const initialState = {
 	]
 }
 
-export default (state = initialState, action) => {
+export const todoApp = (state = initialState, action) => {
 	switch (action.type) {
 		case types.ADD_TODO:
 			let todos = Object.assign([], state.todos)

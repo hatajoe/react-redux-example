@@ -32,7 +32,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos,
+    todos: state.todoApp.todos
   }
 }
 
@@ -48,4 +48,3 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps,
 )(App)
-
