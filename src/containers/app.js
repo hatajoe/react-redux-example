@@ -19,10 +19,10 @@ class App extends Component {
 		e.preventDefault()
 	}
 	render = () => {
-		const { todos } = this.props
+		const { todos, isLoading } = this.props
 		return (
 			<div>
-				<input type="text" onChange={e => this.onChangeTodoInput(e)} />
+				{ isLoading ? <p>{"Loading..."}</p> : <input type="text" onChange={e => this.onChangeTodoInput(e)} /> }
 				<button onClick={e => this.onAddTodo(e)} >add</button>
 				{ todos.map(todo => (<li>{todo}</li>)) }
 			</div>
@@ -32,7 +32,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todoApp.todos
+    todos: state.todoApp.todos,
+		isLoading: state.todoApp.isLoading,
   }
 }
 

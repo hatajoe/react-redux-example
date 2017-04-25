@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import createSagaMiddleware from 'redux-saga'
 import * as reducers from './reducers'
+import sagas from './sagas'
 import App from './containers/app'
 import { Home } from './containers/home'
 import { About } from './containers/about'
@@ -21,6 +22,9 @@ let store = createStore(
   }), 
   applyMiddleware(sagaMiddleware)
 )
+
+// then run the saga
+sagaMiddleware.run(sagas)
 
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store)
